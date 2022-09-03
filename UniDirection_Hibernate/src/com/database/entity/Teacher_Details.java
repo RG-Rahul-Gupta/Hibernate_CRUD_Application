@@ -1,10 +1,12 @@
 package com.database.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,14 +15,18 @@ public class Teacher_Details {
 
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
-@Column(name = "Detail_Id")
-private int Detail_Id;
+@Column(name = "detail_id")
+private int detail_id;
 
-@Column(name = "Address")
-private String Address;
+@Column(name = "address")
+private String address;
 
-@Column(name = "Hobby")
-private String Hobby;
+@Column(name = "hobby")
+private String hobby;
+
+@OneToOne(mappedBy = "detail_id", cascade = CascadeType.ALL)
+private Teacher teacher;
+
 
 public Teacher_Details() {
 
@@ -28,37 +34,37 @@ public Teacher_Details() {
 
 public Teacher_Details(String address, String hobby) {
 
-	Address = address;
-	Hobby = hobby;
+	this.address = address;
+	this.hobby = hobby;
 }
 
 public int getDetail_Id() {
-	return Detail_Id;
+	return detail_id;
 }
 
 public void setDetail_Id(int detail_Id) {
-	Detail_Id = detail_Id;
+	detail_id = detail_Id;
 }
 
 public String getAddress() {
-	return Address;
+	return address;
 }
 
 public void setAddress(String address) {
-	Address = address;
+	this.address = address;
 }
 
 public String getHobby() {
-	return Hobby;
+	return hobby;
 }
 
 public void setHobby(String hobby) {
-	Hobby = hobby;
+	this.hobby = hobby;
 }
 
 @Override
 public String toString() {
-	return "Teacher_Details [Detail_Id=" + Detail_Id + ", Address=" + Address + ", Hobby=" + Hobby + "]";
+	return "Teacher_Details [Detail_Id=" + detail_id + ", Address=" + address + ", Hobby=" + hobby + "]";
 }
 
 
